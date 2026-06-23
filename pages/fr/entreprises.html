@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offre Entreprises — Diapason Coaching</title>
+<link rel="stylesheet" href="../../styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--color-surface); color: #1a1a1a; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(250,247,243,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e0d5c8; padding: 0 56px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo img { width: 36px; height: 36px; object-fit: contain; }
+  .nav-brand { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.04em; }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-item { position: relative; }
+  .nav-link { font-size: 0.875rem; font-weight: 500; color: #6b6057; transition: color 200ms; padding: 8px 14px; border-radius: 8px; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+  .nav-link:hover, .nav-link.active { color: #be9f73; }
+  .nav-link .arrow { font-size: 10px; transition: transform 200ms; }
+  .nav-item:hover .arrow { transform: rotate(180deg); }
+  .dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: white; border-radius: 14px; box-shadow: 0 8px 32px rgba(30,20,10,0.12); border: 1px solid #e0d5c8; min-width: 200px; padding: 8px; opacity: 0; pointer-events: none; transform: translateY(-6px); transition: all 200ms ease; }
+  .nav-item:hover .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+  .dropdown a { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 8px; transition: background 150ms; }
+  .dropdown a:hover { background: #faf7f3; }
+  .dropdown a .dd-title { font-size: 0.875rem; font-weight: 600; color: #1a1a1a; }
+  .dropdown a .dd-sub { font-size: 0.75rem; color: #a89d93; }
+  .dropdown a.active-page .dd-title { color: #be9f73; }
+  .dd-divider { height: 1px; background: #e0d5c8; margin: 4px 0; }
+  .nav-cta { background: #be9f73; color: white !important; padding: 9px 22px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; transition: all 250ms; margin-left: 8px; }
+  .nav-cta:hover { background: #a0804f; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero { width: 100%; background: #1a1a1a; padding: 140px 56px 100px; position: relative; overflow: hidden; text-align: center; }
+  .hero-bg-parens { position: absolute; font-family: 'Nunito', sans-serif; font-size: 600px; font-weight: 800; color: rgba(190,159,115,0.06); line-height: 1; top: 50%; left: 50%; transform: translate(-50%,-50%); letter-spacing: -0.1em; pointer-events: none; white-space: nowrap; }
+  .hero-photo-hint { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(190,159,115,0.08) 0%, transparent 60%); pointer-events: none; }
+  .hero-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #be9f73; margin-bottom: 20px; }
+  .hero-title { font-family: 'Nunito', sans-serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: white; margin-bottom: 10px; }
+  .hero-name { font-family: 'Nunito', sans-serif; font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 300; color: rgba(190,159,115,0.8); font-style: italic; margin-bottom: 24px; }
+  .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 640px; margin: 0 auto 36px; line-height: 1.75; }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-p { background: #be9f73; color: white; padding: 14px 30px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; transition: all 250ms cubic-bezier(0.34,1.56,0.64,1); display: inline-block; }
+  .btn-p:hover { background: #a0804f; transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: rgba(255,255,255,0.75); padding: 14px 30px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; border: 1.5px solid rgba(255,255,255,0.25); cursor: pointer; transition: all 250ms; display: inline-block; }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: white; }
+  .hero-photo-placeholder { margin-top: 56px; max-width: 700px; margin-left: auto; margin-right: auto; background: rgba(255,255,255,0.04); border: 1.5px dashed rgba(190,159,115,0.3); border-radius: 16px; padding: 32px; color: rgba(255,255,255,0.3); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ── SECTIONS ── */
+  section { padding: 88px 56px; }
+  .container { max-width: 1160px; margin: 0 auto; }
+  .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #be9f73; margin-bottom: 12px; }
+  .sec-title { font-family: 'Nunito', sans-serif; font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+  .sec-sub { font-size: 1.05rem; color: #6b6057; max-width: 620px; line-height: 1.7; }
+
+  /* ── PARCOURS ── */
+  .parcours { background: white; }
+  .parcours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; border-radius: 16px; overflow: hidden; }
+  .step { background: #faf7f3; padding: 36px 28px; }
+  .step:nth-child(2) { background: #f0e7d8; }
+  .step:nth-child(3) { background: #be9f73; }
+  .step:nth-child(3) .step-num,
+  .step:nth-child(3) .step-title,
+  .step:nth-child(3) .step-desc { color: white; }
+  .step:nth-child(3) .step-num { opacity: 0.4; }
+  .step:nth-child(3) .step-desc { opacity: 0.85; }
+  .step-num { font-family: 'Nunito', sans-serif; font-size: 3rem; font-weight: 800; color: #e0d5c8; line-height: 1; margin-bottom: 16px; }
+  .step-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #be9f73; margin-bottom: 8px; }
+  .step:nth-child(3) .step-label { color: rgba(255,255,255,0.65); }
+  .step-title { font-family: 'Nunito', sans-serif; font-size: 1.25rem; font-weight: 800; color: #1a1a1a; margin-bottom: 12px; }
+  .step-desc { font-size: 0.9rem; color: #6b6057; line-height: 1.65; }
+  .step-format { display: inline-flex; margin-top: 16px; background: white; color: #a0804f; font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 9999px; }
+  .step:nth-child(3) .step-format { background: rgba(255,255,255,0.2); color: white; }
+
+  /* ── SERVICES DÉTAIL ── */
+  .services-detail { background: #faf7f3; }
+  .svc-group { margin-bottom: 52px; }
+  .svc-group:last-child { margin-bottom: 0; }
+  .svc-group-title { font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 800; color: #be9f73; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #e0d5c8; }
+  .svc-group-icon { width: 32px; height: 32px; background: #be9f73; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0; }
+  .svc-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .svc-card { background: white; border-radius: 14px; padding: 24px; border: 1.5px solid transparent; transition: all 250ms; }
+  .svc-card:hover { border-color: #d4b896; box-shadow: 0 6px 20px rgba(30,20,10,0.08); }
+  .svc-format { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #be9f73; margin-bottom: 8px; }
+  .svc-title { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 8px; }
+  .svc-desc { font-size: 0.875rem; color: #6b6057; line-height: 1.65; }
+  .svc-bullets { margin-top: 12px; display: flex; flex-direction: column; gap: 4px; }
+  .svc-bullet { font-size: 0.8rem; color: #6b6057; display: flex; gap: 8px; align-items: flex-start; }
+  .svc-bullet::before { content: '—'; color: #be9f73; flex-shrink: 0; }
+
+  /* ── BENEFITS ── */
+  .benefits { background: white; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 44px; }
+  .benefit { display: flex; gap: 16px; align-items: flex-start; padding: 20px; background: #faf7f3; border-radius: 12px; }
+  .benefit-dot { width: 32px; height: 32px; background: #be9f73; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; margin-top: 2px; }
+  .benefit-text { font-size: 0.9rem; color: #2e2925; line-height: 1.6; }
+
+  /* ── APPROCHE CORPS ── */
+  .approche-corps { background: #faf7f3; }
+  .approche-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .approche-quote { font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 300; color: #be9f73; line-height: 1.5; font-style: italic; border-left: 4px solid #be9f73; padding-left: 24px; margin-bottom: 28px; }
+  .approche-text { font-size: 0.95rem; color: #6b6057; line-height: 1.75; margin-bottom: 16px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag { background: #ede0cc; color: #7d6038; font-size: 0.78rem; font-weight: 600; padding: 6px 14px; border-radius: 9999px; }
+
+  /* ── CTA BAND ── */
+  .cta-band { background: #be9f73; padding: 64px 56px; text-align: center; }
+  .cta-band h2 { font-family: 'Nunito', sans-serif; font-size: 2rem; font-weight: 800; color: white; margin-bottom: 12px; }
+  .cta-band p { font-size: 1.05rem; color: rgba(255,255,255,0.8); margin-bottom: 28px; }
+  .btn-w { background: white; color: #a0804f; padding: 14px 32px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; display: inline-block; transition: all 250ms; }
+  .btn-w:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+  /* ── FOOTER ── */
+  footer { background: #2e2925; padding: 40px 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .ft-brand { font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 800; color: white; }
+  .ft-name { font-family: 'Nunito', sans-serif; font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); margin-top: 3px; }
+  .ft-paren { color: #d4b896; }
+  .ft-links { display: flex; gap: 20px; }
+  .ft-links a { font-size: 0.8rem; color: rgba(255,255,255,0.45); transition: color 200ms; }
+  .ft-links a:hover { color: #d4b896; }
+  .ft-copy { font-size: 0.72rem; color: rgba(255,255,255,0.28); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="../../assets/logos/DiapasonCoaching_logo_hq.png" alt="">
+    <span class="nav-brand">Diapason Coaching</span>
+  </a>
+  <div class="nav-links">
+    <div class="nav-item">
+      <span class="nav-link active">Offre <span class="arrow">▾</span></span>
+      <div class="dropdown">
+        <a href="entreprises.html" class="active-page">
+          <span class="dd-title">Entreprises</span>
+          <span class="dd-sub">Le Parcours Diapason® — conférences, ateliers, coaching</span>
+        </a>
+        <div class="dd-divider"></div>
+        <a href="particuliers.html">
+          <span class="dd-title">Particuliers</span>
+          <span class="dd-sub">Consultations individuelles &amp; ateliers voix</span>
+        </a>
+      </div>
+    </div>
+    <a href="index.html#about" class="nav-link">À propos</a>
+    <a href="index.html#contact" class="nav-cta">Prenons contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-parens">( )</div>
+  <div class="hero-photo-hint"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Offre Entreprises · Le Parcours Diapason®</p>
+    <h1 class="hero-title">Accompagner vos équipes<br>dans les transitions</h1>
+    <p class="hero-name">avec Camille Romain</p>
+    <p class="hero-sub">Dans un contexte de transformation permanente, Diapason Coaching accompagne les organisations qui souhaitent soutenir la vitalité de leurs collaborateurs et renforcer leur capacité à traverser les transitions avec équilibre, adaptabilité et résilience.</p>
+    <div class="hero-actions">
+      <a href="index.html#contact" class="btn-p">Demander une présentation</a>
+      <a href="#parcours" class="btn-ghost">Découvrir l'approche</a>
+    </div>
+    <div class="hero-photo-placeholder">
+      Zone photo — à venir
+    </div>
+  </div>
+</div>
+
+<!-- LE PARCOURS DIAPASON® -->
+<section class="parcours" id="parcours">
+  <div class="container">
+    <p class="sec-label">Méthodologie</p>
+    <h2 class="sec-title">Le Parcours Diapason®</h2>
+    <p class="sec-sub">3 niveaux de services complémentaires — non obligatoires, modulables selon les besoins de l'organisation.</p>
+    <div class="parcours-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-label">Comprendre</div>
+        <h3 class="step-title">Conférences</h3>
+        <p class="step-desc">Créer une prise de conscience commune des mécanismes humains du changement, de la vitalité et de la régulation interne.</p>
+        <span class="step-format">60 à 90 min</span>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-label">Explorer</div>
+        <h3 class="step-title">Workshops &amp; Ateliers</h3>
+        <p class="step-desc">Explorer des outils concrets de régulation, de vitalité et d'adaptation au changement — passer du comprendre au ressentir.</p>
+        <span class="step-format">2h à 1 journée</span>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-label">Accompagner</div>
+        <h3 class="step-title">Coaching individuel</h3>
+        <p class="step-desc">Un accompagnement individuel et confidentiel destiné aux collaborateurs et leaders — pour traverser les déséquilibres liés aux transitions.</p>
+        <span class="step-format">Suivi sur mesure</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES DÉTAIL -->
+<section class="services-detail" id="services">
+  <div class="container">
+    <p class="sec-label">Détail des services</p>
+    <h2 class="sec-title">Ce que nous faisons ensemble</h2>
+
+    <!-- CONFÉRENCES -->
+    <div class="svc-group">
+      <div class="svc-group-title">
+        <div class="svc-group-icon">①</div>
+        Comprendre — Conférences (60–90 min)
+      </div>
+      <div class="svc-cards">
+        <div class="svc-card">
+          <div class="svc-format">Conférence · 60–90 min</div>
+          <h3 class="svc-title">Se réaccorder dans le changement</h3>
+          <p class="svc-desc">Aborder les transitions avec vitalité et stabilité intérieure. Une lecture intégrative des transitions pour mieux comprendre ce qui se joue au niveau cognitif, émotionnel et physiologique.</p>
+          <div class="svc-bullets">
+            <span class="svc-bullet">Les différentes phases du changement et leurs impacts sur la vitalité</span>
+            <span class="svc-bullet">Les mécanismes de déséquilibre et de surcharge</span>
+            <span class="svc-bullet">Ressources et outils clés de régulation à chaque étape</span>
+          </div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-format">Conférence · 60–90 min</div>
+          <h3 class="svc-title">La voix comme ancrage</h3>
+          <p class="svc-desc">Améliorer sa présence et son impact relationnel grâce au souffle et à la voix. Explorer la voix comme ressource de régulation et d'ancrage dans des contextes professionnels exigeants.</p>
+          <div class="svc-bullets">
+            <span class="svc-bullet">Le lien entre voix, respiration et système nerveux</span>
+            <span class="svc-bullet">La voix comme indicateur de l'état interne</span>
+            <span class="svc-bullet">Booster sa qualité de présence et sa communication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORKSHOPS -->
+    <div class="svc-group">
+      <div class="svc-group-title">
+        <div class="svc-group-icon">②</div>
+        Explorer — Workshops (2h à 1 journée)
+      </div>
+      <div class="svc-cards">
+        <div class="svc-card">
+          <div class="svc-format">Atelier · 2h – 1 journée</div>
+          <h3 class="svc-title">Traverser le changement sans s'épuiser</h3>
+          <p class="svc-desc">Écouter, ressentir et agir en conscience en période de changement. Passer du « comprendre » au « ressentir » — outils concrets pour se réaccorder au cœur du changement.</p>
+          <div class="svc-bullets">
+            <span class="svc-bullet">Perception des signaux internes de surcharge</span>
+            <span class="svc-bullet">Outils de régulation neurophysiologique</span>
+            <span class="svc-bullet">Pratiques somatiques de recentrage et de stabilisation</span>
+          </div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-format">Atelier · 2h – 1 journée</div>
+          <h3 class="svc-title">Le souffle et la voix pour booster ma vitalité</h3>
+          <p class="svc-desc">Réguler son stress et ses émotions et retrouver un élan durable. La voix, la respiration et le corps comme leviers de régulation du système nerveux.</p>
+          <div class="svc-bullets">
+            <span class="svc-bullet">Lien entre respiration, état interne et qualité de présence</span>
+            <span class="svc-bullet">Outils d'ancrage vocal et respiratoire</span>
+            <span class="svc-bullet">Communication plus alignée, calme et impactante</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COACHING -->
+    <div class="svc-group">
+      <div class="svc-group-title">
+        <div class="svc-group-icon">③</div>
+        Accompagner — Coaching individuel
+      </div>
+      <div class="svc-cards">
+        <div class="svc-card">
+          <div class="svc-format">Coaching individuel · Confidentiel</div>
+          <h3 class="svc-title">Se restaurer</h3>
+          <p class="svc-desc">Après une période de surcharge, d'épuisement, de congé parental ou autre absence longue durée.</p>
+          <div class="svc-bullets">
+            <span class="svc-bullet">Restauration des ressources internes</span>
+            <span class="svc-bullet">Régulation du système nerveux et récupération</span>
+            <span class="svc-bullet">Retour progressif à un rythme soutenable</span>
+            <span class="svc-bullet">Prévention des déséquilibres durables</span>
+          </div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-format">Coaching individuel · Confidentiel</div>
+          <h3 class="svc-title">Se réaccorder</h3>
+          <p class="svc-desc">Traverser les périodes de transition — mobilité, prise de poste, réorganisation, reconversion — avec clarté, stabilité et alignement.</p>
+          <div class="svc-bullets">
+            <span class="svc-bullet">Clarification de la trajectoire et des priorités</span>
+            <span class="svc-bullet">Adaptation émotionnelle et cognitive au changement</span>
+            <span class="svc-bullet">Confiance et prise de décision</span>
+            <span class="svc-bullet">Alignement entre énergie, sens et action</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BÉNÉFICES -->
+<section class="benefits">
+  <div class="container">
+    <p class="sec-label">Pourquoi Diapason Coaching</p>
+    <h2 class="sec-title">Bénéfices pour l'organisation</h2>
+    <div class="benefits-grid">
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Soutenir la vitalité et la capacité d'adaptation des talents</span></div>
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Prévenir les situations de surcharge et d'épuisement</span></div>
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Renforcer la stabilité individuelle et collective dans les périodes de changement</span></div>
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Développer des ressources durables face à l'incertitude et à la complexité</span></div>
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Favoriser une meilleure qualité de présence, de communication et de coopération</span></div>
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Accompagner les transformations organisationnelles de manière plus humaine et durable</span></div>
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Contribuer à une culture de travail qui respecte les rythmes humains</span></div>
+      <div class="benefit"><div class="benefit-dot">◎</div><span class="benefit-text">Soutenir l'efficacité et l'impact de la mission de l'entreprise</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROCHE CORPS / VOIX -->
+<section class="approche-corps">
+  <div class="container">
+    <div class="approche-inner">
+      <div>
+        <p class="sec-label">Une approche intégrative</p>
+        <h2 class="sec-title">Le corps, la voix et le système nerveux</h2>
+        <p class="approche-text">J'intègre à l'accompagnement des pratiques de régulation neurophysiologique, somatiques et vocales afin d'accompagner les transitions à tous les niveaux de la personne.</p>
+        <p class="approche-text">Ces approches permettent d'agir directement sur les mécanismes du stress, de soutenir la régulation émotionnelle et de renforcer les capacités d'adaptation. Elles s'appuient notamment sur le corps, la respiration, la stimulation du nerf vague et l'utilisation de la voix.</p>
+        <div class="tags">
+          <span class="tag">Régulation neurophysiologique</span>
+          <span class="tag">Pratiques somatiques</span>
+          <span class="tag">Voix &amp; souffle</span>
+          <span class="tag">Nerf vague</span>
+          <span class="tag">Coaching professionnel</span>
+        </div>
+      </div>
+      <div>
+        <p class="approche-quote">« Une combinaison réflexive, expérientielle et profondément incarnée — particulièrement adaptée aux périodes de changement, de surcharge ou de perte de repères. »</p>
+        <p class="approche-text" style="color:#1a1a1a;font-size:0.875rem">— Camille Romain, fondatrice de Diapason Coaching</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>Prêt à réaccorder vos équipes ?</h2>
+  <p>Contactez-moi pour une présentation personnalisée du Parcours Diapason® adapté à votre organisation.</p>
+  <a href="index.html#contact" class="btn-w">Demander une présentation</a>
+</div>
+
+<footer>
+  <div>
+    <div class="ft-brand">Diapason Coaching</div>
+    <div class="ft-name"><span class="ft-paren">( </span>Camille Romain<span class="ft-paren"> )</span></div>
+  </div>
+  <div class="ft-links">
+    <a href="index.html">Accueil</a>
+    <a href="entreprises.html">Entreprises</a>
+    <a href="particuliers.html">Particuliers</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="ft-copy">© 2026 Diapason Coaching — Le Parcours Diapason®</div>
+</footer>
+
+</body>
+</html>

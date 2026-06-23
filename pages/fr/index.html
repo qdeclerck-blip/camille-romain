@@ -1,0 +1,418 @@
+<!-- @dsCard group="Website" viewport="1280x720" name="Website Homepage" subtitle="Marketing site — real content from Présentation 2026" -->
+<!-- @startingPoint section="Website" subtitle="Diapason Coaching marketing website" viewport="1280x900" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diapason Coaching — Camille Romain</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--color-surface); color: var(--color-black); line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,247,243,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid #e0d5c8; padding: 0 56px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo img { width: 38px; height: 38px; object-fit: contain; }
+  .nav-brand { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.04em; color: #1a1a1a; }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-item { position: relative; }
+  .nav-link { font-size: 0.875rem; font-weight: 500; color: #6b6057; transition: color 200ms; padding: 8px 14px; border-radius: 8px; display: flex; align-items: center; gap: 4px; cursor: pointer; text-decoration: none; }
+  .nav-link:hover { color: #be9f73; }
+  .nav-link .arrow { font-size: 10px; transition: transform 200ms; }
+  .nav-item:hover .arrow { transform: rotate(180deg); }
+  .dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: white; border-radius: 14px; box-shadow: 0 8px 32px rgba(30,20,10,0.12); border: 1px solid #e0d5c8; min-width: 210px; padding: 8px; opacity: 0; pointer-events: none; transform: translateY(-6px); transition: all 200ms ease; z-index: 200; }
+  .nav-item:hover .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+  .dropdown a { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 8px; transition: background 150ms; text-decoration: none; }
+  .dropdown a:hover { background: #faf7f3; }
+  .dropdown a .dd-title { font-size: 0.875rem; font-weight: 600; color: #1a1a1a; }
+  .dropdown a .dd-sub { font-size: 0.75rem; color: #a89d93; }
+  .dd-divider { height: 1px; background: #e0d5c8; margin: 4px 0; }
+  .nav-cta { background: #be9f73; color: white !important; padding: 9px 22px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; transition: all 250ms; margin-left: 6px; }
+  .nav-cta:hover { background: #a0804f; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 120px 56px 80px; gap: 60px; max-width: 1280px; margin: 0 auto; }
+  .hero-content {}
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #be9f73; margin-bottom: 18px; }
+  .hero-title { font-family: 'Nunito', sans-serif; font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .hero-hook { font-family: 'Nunito', sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 300; color: #be9f73; margin-bottom: 24px; font-style: italic; }
+  .hero-sub { font-size: 1.05rem; color: #6b6057; max-width: 500px; line-height: 1.7; margin-bottom: 36px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-p { background: #be9f73; color: white; padding: 14px 30px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; border: none; cursor: pointer; transition: all 250ms cubic-bezier(0.34,1.56,0.64,1); display: inline-block; }
+  .btn-p:hover { background: #a0804f; transform: translateY(-2px); }
+  .btn-s { background: transparent; color: #be9f73; padding: 14px 30px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; border: 2px solid #be9f73; cursor: pointer; transition: all 250ms; display: inline-block; }
+  .btn-s:hover { background: #f7f1e8; }
+  .hero-image { position: relative; }
+  .hero-photo { width: 100%; max-width: 520px; aspect-ratio: 4/5; object-fit: cover; border-radius: 24px; box-shadow: 0 20px 60px rgba(30,20,10,0.18); }
+  .hero-badge { position: absolute; bottom: 24px; left: -20px; background: white; border-radius: 14px; padding: 14px 18px; box-shadow: 0 8px 24px rgba(30,20,10,0.12); display: flex; align-items: center; gap: 10px; }
+  .hero-badge-dot { width: 40px; height: 40px; background: #be9f73; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .hero-badge-dot img { width: 28px; height: 28px; border-radius: 50%; filter: brightness(1.1); }
+  .hero-badge-text { display: flex; flex-direction: column; }
+  .hero-badge-title { font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800; color: #1a1a1a; }
+  .hero-badge-sub { font-size: 0.72rem; color: #a89d93; }
+
+  /* SECTION BASE */
+  section { padding: 88px 56px; }
+  .container { max-width: 1160px; margin: 0 auto; }
+  .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #be9f73; margin-bottom: 12px; }
+  .sec-title { font-family: 'Nunito', sans-serif; font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+  .sec-sub { font-size: 1.05rem; color: #6b6057; max-width: 580px; line-height: 1.7; }
+
+  /* APPROACH */
+  .approach { background: #fff; }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+  .pillar { background: #faf7f3; border-radius: 16px; padding: 28px 24px; text-align: center; transition: all 250ms; }
+  .pillar:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(30,20,10,0.1); }
+  .pillar-num { font-family: 'Nunito', sans-serif; font-size: 2.5rem; font-weight: 800; color: #ede0cc; line-height: 1; margin-bottom: 12px; }
+  .pillar-title { font-family: 'Nunito', sans-serif; font-size: 1.15rem; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; }
+  .pillar-desc { font-size: 0.875rem; color: #6b6057; line-height: 1.65; }
+  .pillar-tag { display: inline-flex; margin-top: 14px; background: #be9f73; color: white; font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.06em; }
+
+  /* SERVICES — 2-tab layout */
+  .services { background: #faf7f3; }
+  .tabs { display: flex; gap: 4px; background: #ede0cc; border-radius: 9999px; padding: 4px; width: fit-content; margin-bottom: 40px; }
+  .tab { padding: 8px 22px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-size: 0.875rem; font-weight: 700; cursor: pointer; transition: all 200ms; color: #6b6057; border: none; background: transparent; }
+  .tab.active { background: white; color: #1a1a1a; box-shadow: 0 2px 8px rgba(30,20,10,0.1); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .svc-card { background: white; border-radius: 16px; padding: 26px; border: 1.5px solid transparent; transition: all 250ms; }
+  .svc-card:hover { border-color: #d4b896; box-shadow: 0 6px 20px rgba(30,20,10,0.08); }
+  .svc-format { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #be9f73; margin-bottom: 8px; }
+  .svc-title { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; }
+  .svc-desc { font-size: 0.875rem; color: #6b6057; line-height: 1.6; }
+  .svc-badge { display: inline-flex; margin-top: 12px; background: #f7f1e8; color: #a0804f; font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 9999px; }
+
+  /* ABOUT */
+  .about { background: #be9f73; overflow: hidden; position: relative; }
+  .about::before { content: '( )'; position: absolute; font-family: 'Nunito', sans-serif; font-size: 500px; font-weight: 800; color: rgba(255,255,255,0.05); top: 50%; left: 50%; transform: translate(-50%,-50%); line-height: 1; letter-spacing: -0.05em; pointer-events: none; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; position: relative; z-index: 1; }
+  .about-photo { width: 100%; max-width: 420px; aspect-ratio: 3/4; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+  .about .sec-label { color: rgba(255,255,255,0.65); }
+  .about .sec-title { color: white; }
+  .about-text { font-size: 1rem; color: rgba(255,255,255,0.88); line-height: 1.75; margin-bottom: 14px; }
+  .about-name { font-family: 'Nunito', sans-serif; font-size: 1.25rem; font-weight: 300; color: white; margin-top: 4px; }
+  .about-name .p { opacity: 0.4; }
+  .about-credentials { display: flex; flex-direction: column; gap: 6px; margin: 20px 0; }
+  .about-cred { display: flex; align-items: center; gap: 10px; font-size: 0.875rem; color: rgba(255,255,255,0.8); }
+  .about-cred::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .btn-w { background: white; color: #a0804f; padding: 13px 28px; border-radius: 9999px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700; display: inline-block; transition: all 250ms; margin-top: 8px; }
+  .btn-w:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: white; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
+  .testi { background: #faf7f3; border-radius: 16px; padding: 26px; border-left: 4px solid #be9f73; }
+  .testi-text { font-size: 0.9rem; color: #1a1a1a; line-height: 1.75; font-style: italic; margin-bottom: 16px; }
+  .testi-auth { font-size: 0.78rem; font-weight: 700; color: #be9f73; letter-spacing: 0.05em; }
+
+  /* CONTACT */
+  .contact { background: #faf7f3; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .form { display: flex; flex-direction: column; gap: 14px; }
+  .fg { display: flex; flex-direction: column; gap: 6px; }
+  .fg label { font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: #1a1a1a; }
+  .fg input, .fg textarea, .fg select { padding: 12px 16px; border: 1.5px solid #e0d5c8; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: white; outline: none; transition: all 200ms; color: #1a1a1a; }
+  .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: #be9f73; box-shadow: 0 0 0 3px rgba(190,159,115,0.15); }
+  .fg textarea { resize: vertical; min-height: 110px; }
+  .contact-info { display: flex; flex-direction: column; gap: 18px; }
+  .ci { display: flex; gap: 14px; align-items: flex-start; }
+  .ci-icon { width: 40px; height: 40px; background: #ede0cc; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #a0804f; font-size: 16px; }
+  .ci-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #a89d93; margin-bottom: 3px; }
+  .ci-val { font-size: 0.9rem; color: #1a1a1a; }
+  .contact-note { background: white; border-radius: 12px; padding: 18px 20px; margin-top: 24px; border: 1.5px solid #e0d5c8; }
+  .contact-note p { font-size: 0.875rem; color: #6b6057; line-height: 1.6; }
+  .contact-note strong { color: #be9f73; }
+
+  /* FOOTER */
+  footer { background: #2e2925; padding: 44px 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .ft-brand { font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 800; color: white; letter-spacing: 0.05em; }
+  .ft-name { font-family: 'Nunito', sans-serif; font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); margin-top: 4px; }
+  .ft-paren { color: #d4b896; }
+  .ft-links { display: flex; gap: 22px; }
+  .ft-links a { font-size: 0.8rem; color: rgba(255,255,255,0.45); transition: color 200ms; }
+  .ft-links a:hover { color: #d4b896; }
+  .ft-copy { font-size: 0.72rem; color: rgba(255,255,255,0.28); }
+
+  /* Tab JS */
+  .tab-panels { display: block; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">
+    <img src="../../assets/logos/DiapasonCoaching_logo_hq.png" alt="Diapason">
+    <span class="nav-brand">Diapason Coaching</span>
+  </div>
+  <div class="nav-links">
+    <div class="nav-item">
+      <span class="nav-link">Offre <span class="arrow">▾</span></span>
+      <div class="dropdown">
+        <a href="entreprises.html">
+          <span class="dd-title">Entreprises</span>
+          <span class="dd-sub">Le Parcours Diapason® — conférences, ateliers, coaching</span>
+        </a>
+        <div class="dd-divider"></div>
+        <a href="particuliers.html">
+          <span class="dd-title">Particuliers</span>
+          <span class="dd-sub">Consultations individuelles &amp; ateliers voix</span>
+        </a>
+      </div>
+    </div>
+    <a href="#about" class="nav-link">À propos</a>
+    <a href="#temoignages" class="nav-link">Témoignages</a>
+    <a href="#contact" class="nav-cta">Prenons contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="background: var(--color-surface); padding-top: 0;">
+  <div class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Coaching professionnel · Régulation somatique &amp; vocale</p>
+      <h1 class="hero-title">Besoin de vous<br>réaccorder ?</h1>
+      <p class="hero-hook">Trouvez votre fréquence.</p>
+      <p class="hero-sub">Diapason Coaching accompagne les individus, les équipes et les organisations dans les périodes de changement afin de cultiver davantage de vitalité, de stabilité et de sens.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-p">Prenons contact</a>
+        <a href="#services" class="btn-s">Découvrir les offres</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="../../assets/brand/photo_coaching_session.jpeg" alt="Séance de coaching" class="hero-photo">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"><img src="../../assets/logos/picto_thumb.jpg" alt=""></div>
+        <div class="hero-badge-text">
+          <span class="hero-badge-title">Première séance offerte</span>
+          <span class="hero-badge-sub">Séance découverte gratuite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPROACH — Le Parcours Diapason® -->
+<section class="approach" id="approche">
+  <div class="container">
+    <p class="sec-label">Méthodologie</p>
+    <h2 class="sec-title">Le Parcours Diapason®</h2>
+    <p class="sec-sub">Une approche intégrée combinant coaching professionnel, régulation neurophysiologique et pratiques somatiques et vocales — pour des transformations durables.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3 class="pillar-title">Comprendre</h3>
+        <p class="pillar-desc">Conférences autour des outils clés de régulation face au changement. Créer une prise de conscience commune des mécanismes humains.</p>
+        <span class="pillar-tag">60–90 min</span>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3 class="pillar-title">Explorer</h3>
+        <p class="pillar-desc">Workshops &amp; ateliers expérientiels pour tester les outils de régulation, de vitalité et d'adaptation au changement.</p>
+        <span class="pillar-tag">2h — 1 journée</span>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3 class="pillar-title">Accompagner</h3>
+        <p class="pillar-desc">Séances de coaching individuel et confidentiel pour accompagner les déséquilibres liés aux transitions et aux enjeux de leadership.</p>
+        <span class="pillar-tag">Accompagnement suivi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <p class="sec-label">Offres de services</p>
+    <h2 class="sec-title">Un accompagnement sur mesure</h2>
+    <p class="sec-sub" style="margin-bottom: 32px">Que vous soyez une organisation ou un particulier, je propose des formats adaptés à votre contexte et à vos besoins.</p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('entreprises', this)">Entreprises</button>
+      <button class="tab" onclick="switchTab('particuliers', this)">Particuliers</button>
+    </div>
+
+    <div class="tab-panels">
+      <div id="tab-entreprises" class="tab-panel active">
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-format">Conférence · 60–90 min</div>
+            <h3 class="svc-title">Se réaccorder dans le changement</h3>
+            <p class="svc-desc">Lecture intégrative des transitions — mécanique cognitive, émotionnelle et physiologique du changement. Ressources et outils clés de régulation.</p>
+            <span class="svc-badge">Sensibilisation</span>
+          </div>
+          <div class="svc-card">
+            <div class="svc-format">Conférence · 60–90 min</div>
+            <h3 class="svc-title">La voix comme ancrage</h3>
+            <p class="svc-desc">Explorer la voix, le souffle et le système nerveux comme ressources de régulation et d'ancrage dans des contextes professionnels exigeants.</p>
+            <span class="svc-badge">Présence &amp; impact</span>
+          </div>
+          <div class="svc-card">
+            <div class="svc-format">Atelier · 2h – 1 journée</div>
+            <h3 class="svc-title">Traverser le changement sans s'épuiser</h3>
+            <p class="svc-desc">Passer du « comprendre » au « ressentir ». Outils concrets de régulation neurophysiologique, pratiques somatiques de recentrage.</p>
+            <span class="svc-badge">Expérientiel</span>
+          </div>
+          <div class="svc-card">
+            <div class="svc-format">Atelier · 2h – 1 journée</div>
+            <h3 class="svc-title">Le souffle et la voix pour booster ma vitalité</h3>
+            <p class="svc-desc">Voix, respiration et corps comme leviers de régulation du système nerveux. Communication plus alignée, calme et impactante.</p>
+            <span class="svc-badge">Régulation vocale</span>
+          </div>
+          <div class="svc-card">
+            <div class="svc-format">Coaching individuel</div>
+            <h3 class="svc-title">Se restaurer</h3>
+            <p class="svc-desc">Après burnout, congé parental ou absence longue durée : restaurer la vitalité, réguler le système nerveux, retour progressif à un rythme soutenable.</p>
+            <span class="svc-badge">Récupération</span>
+          </div>
+          <div class="svc-card">
+            <div class="svc-format">Coaching individuel</div>
+            <h3 class="svc-title">Se réaccorder</h3>
+            <p class="svc-desc">Mobilité, prise de poste, réorganisation, reconversion : traverser les transitions avec clarté, stabilité et alignement.</p>
+            <span class="svc-badge">Transitions</span>
+          </div>
+        </div>
+        <p style="margin-top:24px;font-size:0.875rem;color:#6b6057;">→ <a href="entreprises.html" style="color:#be9f73;font-weight:600;">Voir l'offre complète Entreprises</a></p>
+      </div>
+
+      <div id="tab-particuliers" class="tab-panel">
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-format">Consultations individuelles</div>
+            <h3 class="svc-title">Accompagnement transitions de vie</h3>
+            <p class="svc-desc">Clarifier vos besoins, valeurs, objectifs. Retrouver une meilleure écoute de votre corps, apaiser le mental, renforcer votre ancrage et votre confiance en vous.</p>
+            <span class="svc-badge">Individuel · Confidentiel</span>
+          </div>
+          <div class="svc-card">
+            <div class="svc-format">Consultations individuelles</div>
+            <h3 class="svc-title">Accompagnement stress &amp; burnout</h3>
+            <p class="svc-desc">Pour les personnes en burnout suivies par un médecin, un espace bienveillant avec pratiques vocales et somatiques pour entraîner votre système nerveux à se réguler.</p>
+            <span class="svc-badge">Approche holistique</span>
+          </div>
+          <div class="svc-card" style="grid-column: 1 / -1;">
+            <div class="svc-format">Ateliers collectifs</div>
+            <h3 class="svc-title">« Libère ton stress, libère ta voix »</h3>
+            <p class="svc-desc">La voix est intimement liée au corps, au souffle, aux émotions et au système nerveux. Ces ateliers proposent un espace pour relâcher les tensions, remettre du mouvement dans le corps et retrouver un élan vital grâce au souffle, au son et au chant collectif. Accessible à tous — aucun prérequis musical.</p>
+            <span class="svc-badge">Groupe · Accessibilité totale</span>
+          </div>
+        </div>
+        <p style="margin-top:24px;font-size:0.875rem;color:#6b6057;">→ <a href="particuliers.html" style="color:#be9f73;font-weight:600;">Voir l'offre complète Particuliers</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <img src="../../assets/brand/photo_atelier_somatique.jpeg" alt="Camille Romain en atelier" class="about-photo">
+      </div>
+      <div>
+        <p class="sec-label">À propos</p>
+        <h2 class="sec-title" style="color:white">Votre guide de résonance</h2>
+        <p class="about-text">Entre l'héritage d'un papa psychologue et musicothérapeute et une vie entière nourrie par le chant et la danse, j'ai toujours évolué à la rencontre du corps, de la voix et de l'humain.</p>
+        <p class="about-text">Après un Master en Management International (ICHEC) et près de quinze ans d'accompagnement en entreprise, j'ai enrichi ma pratique de coaching en intégrant la régulation neurophysiologique, les pratiques somatiques et vocales.</p>
+        <div class="about-credentials">
+          <span class="about-cred">Coach certifiée depuis 2018</span>
+          <span class="about-cred">Analyse transactionnelle &amp; accompagnement du burnout</span>
+          <span class="about-cred">Régulation neurophysiologique, somatique &amp; vocale</span>
+          <span class="about-cred">Master Management International, ICHEC</span>
+        </div>
+        <p class="about-name"><span class="p">( </span>Camille Romain<span class="p"> )</span></p>
+        <a href="#contact" class="btn-w">Échangeons</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="temoignages">
+  <div class="container">
+    <p class="sec-label">Témoignages</p>
+    <h2 class="sec-title">Ils se sont réaccordés</h2>
+    <div class="testi-grid">
+      <div class="testi">
+        <p class="testi-text">"Camille m'a aidée à clarifier mes priorités et à m'affirmer dans mon rôle. Une transformation profonde et durable."</p>
+        <span class="testi-auth">— Sophie M., Directrice RH</span>
+      </div>
+      <div class="testi">
+        <p class="testi-text">"Un accompagnement bienveillant et exigeant à la fois. J'ai retrouvé confiance en moi et en mes choix de vie."</p>
+        <span class="testi-auth">— Thomas R., Entrepreneur</span>
+      </div>
+      <div class="testi">
+        <p class="testi-text">"Les ateliers voix m'ont donné des outils concrets que j'utilise encore aujourd'hui pour gérer mon stress au quotidien."</p>
+        <span class="testi-auth">— Julie B., Manager</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <p class="sec-label">Contact</p>
+        <h2 class="sec-title">Prenons contact</h2>
+        <p class="sec-sub" style="margin-bottom: 28px">La première séance découverte est offerte. Échangeons sur votre situation.</p>
+        <div class="contact-info">
+          <div class="ci"><div class="ci-icon">✉</div><div><div class="ci-lbl">Email</div><div class="ci-val">camille@diapasoncoaching.fr</div></div></div>
+          <div class="ci"><div class="ci-icon">☎</div><div><div class="ci-lbl">Téléphone</div><div class="ci-val">+33 6 XX XX XX XX</div></div></div>
+          <div class="ci"><div class="ci-icon">◎</div><div><div class="ci-lbl">Séances</div><div class="ci-val">En présentiel &amp; en ligne</div></div></div>
+        </div>
+        <div class="contact-note">
+          <p><strong>Parcours Diapason® en entreprise ?</strong> Contactez-moi pour une présentation personnalisée de l'offre modulaire adaptée à votre organisation.</p>
+        </div>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="fg"><label>Votre prénom *</label><input type="text" placeholder="Prénom"></div>
+        <div class="fg"><label>Votre email *</label><input type="email" placeholder="vous@example.com"></div>
+        <div class="fg"><label>Vous êtes…</label>
+          <select>
+            <option>Particulier</option>
+            <option>Entreprise / Organisation</option>
+          </select>
+        </div>
+        <div class="fg"><label>Votre message</label><textarea placeholder="Décrivez votre situation ou votre projet…"></textarea></div>
+        <button type="submit" class="btn-p" style="align-self:flex-start;border:none">Envoyer ma demande</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="ft-brand">Diapason Coaching</div>
+    <div class="ft-name"><span class="ft-paren">( </span>Camille Romain<span class="ft-paren"> )</span></div>
+  </div>
+  <div class="ft-links">
+    <a href="#approche">Approche</a>
+    <a href="#services">Services</a>
+    <a href="#about">À propos</a>
+    <a href="#contact">Contact</a>
+    <a href="#">Mentions légales</a>
+  </div>
+  <div class="ft-copy">© 2026 Diapason Coaching — Le Parcours Diapason®</div>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
